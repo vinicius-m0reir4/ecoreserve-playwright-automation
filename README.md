@@ -2,7 +2,7 @@
 
 Suíte de **testes automatizados End-to-End (E2E)** desenvolvida para a plataforma fictícia **EcoReserve**, um sistema de reservas de experiências ecológicas.
 
-O projeto foi desenvolvido com foco em **Quality Assurance (QA)** e demonstra a aplicação prática de conceitos como planejamento de testes, criação de massa de dados, testes positivos e negativos, organização de cenários e automação de fluxos críticos utilizando **Playwright e JavaScript**.
+O projeto foi desenvolvido com foco em **Quality Assurance (QA)** e demonstra a aplicação prática de conceitos como planejamento de testes, criação de massa de dados, testes positivos e negativos, organização de cenários, análise de evidências e automação de fluxos críticos utilizando **Playwright e JavaScript**.
 
 ---
 
@@ -16,20 +16,20 @@ Além da automação, o projeto busca demonstrar uma estrutura organizada e sust
 
 ## 🛠️ Tecnologias e Ferramentas
 
-| Tecnologia         | Utilização                               |
-| ------------------ | ---------------------------------------- |
-| **JavaScript**     | Linguagem utilizada nos testes           |
-| **Playwright**     | Automação e execução dos testes E2E      |
-| **Node.js / NPM**  | Ambiente e gerenciamento de dependências |
-| **Git**            | Controle de versão                       |
-| **GitHub**         | Hospedagem do código-fonte               |
-| **GitHub Actions** | Estrutura preparada para CI/CD           |
+| Tecnologia         | Utilização                                           |
+| ------------------ | ---------------------------------------------------- |
+| **JavaScript**     | Linguagem utilizada nos testes                       |
+| **Playwright**     | Framework de automação de testes E2E                 |
+| **Node.js / NPM**  | Ambiente de execução e gerenciamento de dependências |
+| **Git**            | Controle de versão                                   |
+| **GitHub**         | Hospedagem do código-fonte                           |
+| **GitHub Actions** | Automação da execução dos testes em CI               |
 
 ---
 
 ## 🧪 Cenários Automatizados
 
-Atualmente, a suíte conta com **13 cenários automatizados**, contemplando testes positivos, negativos e um Smoke Test.
+A suíte conta atualmente com **13 cenários automatizados**, contemplando testes positivos, negativos e Smoke Test.
 
 ### 📝 Cadastro
 
@@ -66,10 +66,12 @@ Atualmente, a suíte conta com **13 cenários automatizados**, contemplando test
 ```text
 ecoreserve-playwright-automation/
 │
+├── .github/
+│   └── workflows/
+│       └── GitHub Actions
+│
 ├── docs/
 │   └── Documentação de QA
-│       ├── Plano de Testes
-│       └── Casos de Teste
 │
 ├── test-data/
 │   └── Massa de dados e Data Factories
@@ -87,8 +89,14 @@ ecoreserve-playwright-automation/
 │   └── helpers/
 │       └── Funções auxiliares e Page Actions
 │
+├── cadastro.html
+├── index.html
+├── login.html
+├── script.js
+├── style.css
 ├── playwright.config.js
 ├── package.json
+├── package-lock.json
 ├── .gitignore
 └── README.md
 ```
@@ -97,7 +105,7 @@ ecoreserve-playwright-automation/
 
 ## 🚀 Como Executar o Projeto
 
-### 1. Pré-requisitos
+### Pré-requisitos
 
 Antes de executar o projeto, certifique-se de possuir:
 
@@ -105,7 +113,7 @@ Antes de executar o projeto, certifique-se de possuir:
 * [Git](https://git-scm.com/)
 * Navegador compatível com Playwright
 
-### 2. Clonar o repositório
+### 1. Clonar o repositório
 
 ```bash
 git clone https://github.com/vinicius-m0reir4/ecoreserve-playwright-automation.git
@@ -117,13 +125,13 @@ Acesse a pasta do projeto:
 cd ecoreserve-playwright-automation
 ```
 
-### 3. Instalar as dependências
+### 2. Instalar as dependências
 
 ```bash
 npm install
 ```
 
-### 4. Executar os testes
+### 3. Executar os testes
 
 Para executar toda a suíte em modo **headless**:
 
@@ -131,15 +139,15 @@ Para executar toda a suíte em modo **headless**:
 npx playwright test
 ```
 
-### 5. Executar em modo visual
+### 4. Executar em modo visual
 
-Para acompanhar os testes diretamente no navegador:
+Para acompanhar a execução diretamente no navegador:
 
 ```bash
 npx playwright test --headed
 ```
 
-### 6. Executar utilizando o UI Mode
+### 5. Executar utilizando o UI Mode
 
 O UI Mode permite visualizar, executar e depurar os testes de forma interativa:
 
@@ -147,7 +155,7 @@ O UI Mode permite visualizar, executar e depurar os testes de forma interativa:
 npx playwright test --ui
 ```
 
-### 7. Visualizar o relatório HTML
+### 6. Visualizar o relatório HTML
 
 Após a execução dos testes:
 
@@ -159,24 +167,28 @@ npx playwright show-report
 
 ## 📊 Relatórios e Evidências
 
-O Playwright disponibiliza recursos para análise dos resultados e investigação de falhas, incluindo:
+O Playwright está configurado para gerar recursos de evidência que auxiliam na análise dos resultados e investigação de falhas.
 
-* Status de execução dos testes
-* Tempo de execução
-* Screenshots
-* Traces
-* Vídeos, quando configurados
-* Detalhamento das etapas executadas
+A configuração atual inclui:
 
-Os arquivos gerados durante a execução são mantidos fora do controle de versão por meio do `.gitignore`, evitando que arquivos temporários e relatórios locais sejam enviados ao repositório.
+* **HTML Report** — relatório detalhado da execução
+* **List Reporter** — acompanhamento dos testes no terminal
+* **Screenshots** — capturados somente quando um teste falha
+* **Traces** — capturados na primeira tentativa de um teste que precise de retry
+* **Vídeos** — mantidos quando ocorre uma falha
+* **Detalhamento das etapas executadas**
+
+Essas configurações permitem investigar uma falha utilizando diferentes evidências da execução, facilitando o processo de análise e diagnóstico.
+
+Os arquivos gerados durante a execução são mantidos fora do controle de versão por meio do `.gitignore`, evitando o envio de arquivos temporários e relatórios locais para o repositório.
 
 ---
 
 ## 🔎 Estratégia de Testes
 
-A suíte foi estruturada considerando diferentes tipos de cenários:
+A suíte foi estruturada considerando diferentes tipos de cenários.
 
-### Testes Positivos
+### ✅ Testes Positivos
 
 Validam se a aplicação funciona corretamente quando recebe dados válidos.
 
@@ -185,22 +197,50 @@ Validam se a aplicação funciona corretamente quando recebe dados válidos.
 * Cadastro de usuário válido
 * Login com credenciais válidas
 
-### Testes Negativos
+### ❌ Testes Negativos
 
 Validam como a aplicação se comporta diante de entradas inválidas ou condições inesperadas.
 
 **Exemplos:**
 
 * Campos obrigatórios não preenchidos
-* E-mail inválido
-* Senha fora do padrão esperado
+* E-mail em formato inválido
+* Senha abaixo do tamanho mínimo
 * Senhas diferentes
 * Usuário inexistente
 * Credenciais incorretas
+* E-mail já cadastrado
 
-### Smoke Test
+### 🚦 Smoke Test
 
-Valida rapidamente se a aplicação está acessível e se o fluxo básico da página inicial está funcionando, servindo como uma verificação inicial antes da execução de testes mais abrangentes.
+Valida rapidamente se a aplicação está acessível e se o fluxo básico da página inicial está funcionando.
+
+Esse tipo de teste serve como uma verificação inicial antes da execução de uma suíte mais abrangente.
+
+---
+
+## ⚙️ Configuração de Execução
+
+A configuração do Playwright utiliza algumas estratégias para tornar a execução mais adequada a um ambiente de testes automatizados:
+
+* Execução paralela dos testes
+* Retry automático em ambiente de CI
+* Controle de workers em CI
+* Execução em Chromium
+* Relatório HTML
+* Relatório em terminal
+* Screenshots em caso de falha
+* Traces na primeira tentativa de retry
+* Vídeos mantidos em caso de falha
+* Inicialização automática da aplicação através do `webServer`
+
+---
+
+## 🔄 Integração Contínua
+
+O projeto possui configuração de **GitHub Actions** para integração da automação ao processo de desenvolvimento.
+
+A utilização de CI permite executar a suíte de testes de forma automatizada e identificar possíveis falhas sem depender exclusivamente da execução manual em ambiente local.
 
 ---
 
@@ -211,13 +251,11 @@ O projeto foi estruturado de forma que novos recursos possam ser incorporados fu
 * [ ] Implementação de Page Object Model (POM)
 * [ ] Expansão dos cenários automatizados
 * [ ] Testes de API
-* [ ] Integração com GitHub Actions
-* [ ] Execução automática dos testes em CI/CD
-* [ ] Geração de relatórios em pipelines
+* [ ] Expansão da cobertura de testes
 * [ ] Testes em diferentes navegadores
 * [ ] Testes de responsividade
+* [ ] Geração de relatórios em pipelines
 * [ ] Integração com ferramentas de gestão de testes
-* [ ] Expansão da cobertura de testes
 
 ---
 
@@ -225,7 +263,7 @@ O projeto foi estruturado de forma que novos recursos possam ser incorporados fu
 
 **Em desenvolvimento 🚧**
 
-O projeto está sendo utilizado como parte da minha jornada prática de estudos em **Quality Assurance e Automação de Testes**, com evolução contínua da cobertura e da estrutura da suíte.
+O projeto faz parte da minha jornada prática de estudos em **Quality Assurance e Automação de Testes**, com evolução contínua da cobertura, estrutura e estratégias de automação.
 
 ---
 
@@ -233,18 +271,22 @@ O projeto está sendo utilizado como parte da minha jornada prática de estudos 
 
 Projeto desenvolvido para fins de **estudo, prática e construção de portfólio profissional na área de QA e Automação de Testes**.
 
-**Principais conhecimentos aplicados:**
+### Principais conhecimentos aplicados
 
 * Testes End-to-End
 * Automação de testes
 * Testes positivos e negativos
+* Smoke Testing
 * Casos de teste
 * Massa de dados
 * JavaScript
 * Playwright
 * Git e GitHub
+* GitHub Actions
 * Organização de suítes de testes
-* Análise de resultados e evidências
+* Análise de resultados
+* Evidências de execução
+* Investigação de falhas
 
 ---
 
